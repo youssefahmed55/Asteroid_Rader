@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="asteroid"
+            type="com.udacity.asteroidradar.Asteroid" />
+    </data>
+    <!-- ConstraintLayout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_background">
+        <!-- ImageView Appears Asteroid state -->
+        <ImageView
+            android:id="@+id/activity_main_image_of_the_day"
+            android:layout_width="0dp"
+            android:scaleType="fitXY"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:contentDescription="@{asteroid.potentiallyHazardous ? @string/potentially_hazardous_asteroid_image : @string/not_hazardous_asteroid_image}"
+            app:asteroidStatusImage="@{asteroid.potentiallyHazardous}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/scroll"
+            tools:srcCompat="@drawable/asteroid_safe" />
+        <!-- ScrollView -->
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/activity_main_image_of_the_day"
+            app:layout_constraintTop_toTopOf="parent">
+            <!-- LinearLayout Contains Details Of Asteroid -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!-- LinearLayout -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <!-- TextView -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/close_approach_data_title"
+                        style="@style/TextAppearance.Title"
+                        android:layout_marginTop="1dp"
+                        />
+                    <!-- TextView Appears Close Approach Data Title-->
+                    <TextView
+                        android:id="@+id/close_approach_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/TextAppearance.Subtitle"
+                        android:text="@{asteroid.closeApproachDate}"
+
+                        />
+                </LinearLayout>
+                <!-- LinearLayout -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <!-- LinearLayout -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <!-- TextView -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/absolute_magnitude_title"
+                            style="@style/TextAppearance.Title" />
+                        <!-- TextView Appears Absolute Magnitude-->
+                        <TextView
+                            android:id="@+id/absolute_magnitude"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/TextAppearance.Subtitle"
+                            app:astronomicalUnitText="@{asteroid.absoluteMagnitude}"
+                            />
+                    </LinearLayout>
+                    <!-- ImageView Appears Info Of (au) -->
+                    <ImageView
+                        android:id="@+id/help_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding"
+                        android:contentDescription="@string/astronomical_unit_explanation_button"
+                        app:srcCompat="@drawable/ic_help_circle" />
+
+                </LinearLayout>
+                <!-- TextView -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:text="@string/estimated_diameter_title"
+                    style="@style/TextAppearance.Title" />
+                <!-- TextView Appears Estimated Diameter-->
+                <TextView
+                    android:id="@+id/estimated_diameter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Subtitle"
+                    app:kmUnitText="@{asteroid.estimatedDiameter}"
+                    />
+                <!-- TextView -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Title"
+                    android:text="@string/relative_velocity_title"
+                    />
+                <!-- TextView Appears Relative Velocity-->
+                <TextView
+                    android:id="@+id/relative_velocity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Subtitle"
+                    app:velocityText="@{asteroid.relativeVelocity}"
+                    />
+                <!-- TextView -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Title"
+                    android:text="@string/distance_from_earth_title"
+                    />
+                <!-- TextView Appears Distance From Earth-->
+                <TextView
+                    android:id="@+id/distance_from_earth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Subtitle"
+                    app:astronomicalUnitText="@{asteroid.distanceFromEarth}" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
