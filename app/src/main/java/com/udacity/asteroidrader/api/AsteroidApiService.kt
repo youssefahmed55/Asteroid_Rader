@@ -5,6 +5,7 @@ package com.udacity.asteroidradar.api
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.PictureOfDay
+import com.udacity.asteroidrader.BuildConfig
 import com.udacity.asteroidrader.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -25,7 +26,7 @@ private val retrofit2 = Retrofit.Builder()
     .build()
 
 
-private const val API_KEY = ""    //<-You Can Write API KEY Here
+private const val API_KEY = BuildConfig.NASA_API_KEY    //API KEY
 interface AsteroidApiService {
 
   @GET("neo/rest/v1/feed?api_key=$API_KEY")
